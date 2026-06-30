@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness Mantra | Shape Your Body, Forge Your Legacy</title>
+<style>
+  :root{
+    --gold:#d4af37;
+    --gold-bright:#e0b93a;
+    --red:#ff3b3b;
+    --black:#0a0a0a;
+    --black2:#111111;
+    --gray:#9a9a9a;
+    --white:#f5f5f5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Arial Narrow', Arial, sans-serif;
+    background:var(--black);
+    color:var(--white);
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .container{
+    max-width:1300px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* Top bar */
+  .topbar{
+    background:var(--gold);
+    color:#1a1a1a;
+    text-align:center;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:2px;
+    padding:10px 16px;
+  }
+
+  /* Navbar */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 40px;
+    background:var(--black);
+    position:sticky;
+    top:0;
+    z-index:100;
+    border-bottom:1px solid #1f1f1f;
+  }
+  .logo{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:2px;
+  }
+  .logo span{color:var(--gold);}
+  nav ul{
+    display:flex;
+    gap:40px;
+  }
+  nav a{
+    font-size:13px;
+    letter-spacing:1.5px;
+    font-weight:600;
+    color:#bdbdbd;
+    transition:color .2s;
+    padding-bottom:4px;
+  }
+  nav a.active{
+    color:var(--white);
+    border-bottom:2px solid var(--gold);
+  }
+  nav a:hover{color:var(--gold);}
+  .btn-join{
+    border:1px solid #444;
+    background:transparent;
+    color:var(--white);
+    padding:12px 24px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.25s;
+  }
+  .btn-join:hover{
+    background:var(--white);
+    color:var(--black);
+  }
+  .menu-toggle{display:none;background:none;border:none;color:var(--white);font-size:26px;cursor:pointer;}
+
+  /* Hero */
+  .hero{
+    text-align:center;
+    padding:100px 20px 80px;
+    background:radial-gradient(circle at 50% 0%, #1a1a1a, #0a0a0a 60%);
+  }
+  .hero .eyebrow{
+    color:var(--gold);
+    letter-spacing:4px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 7vw, 84px);
+    line-height:1.05;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:30px;
+  }
+  .hero p{
+    max-width:650px;
+    margin:0 auto 40px;
+    color:#c9c9c9;
+    font-size:17px;
+    line-height:1.6;
+  }
+  .hero-buttons{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--gold);
+    color:#1a1a1a;
+    border:none;
+    padding:18px 34px;
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.25s;
+  }
+  .btn-primary:hover{background:var(--gold-bright);transform:translateY(-2px);}
+  .btn-outline{
+    background:transparent;
+    border:1px solid #555;
+    color:var(--white);
+    padding:18px 34px;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.25s;
+  }
+  .btn-outline:hover{border-color:var(--white);}
+
+  /* Category cards */
+  section{padding:80px 0;}
+  .grid3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+  }
+  .card{
+    position:relative;
+    height:420px;
+    overflow:hidden;
+    background:#1a1a1a;
+    cursor:pointer;
+  }
+  .card img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(100%) brightness(.55);
+    transition:transform .5s ease, filter .5s ease;
+  }
+  .card:hover img{transform:scale(1.08);filter:grayscale(60%) brightness(.65);}
+  .card .label{
+    position:absolute;
+    bottom:30px;left:30px;
+  }
+  .card .label h3{
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:1px;
+    margin-bottom:6px;
+  }
+  .card .label p{
+    color:var(--gold);
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+  }
+
+  /* Quote */
+  .quote{
+    background:#0d0d0d;
+    padding:90px 0;
+  }
+  .quote .container{
+    max-width:900px;
+  }
+  .quote-mark{font-size:60px;color:#3a3a3a;font-family:Georgia,serif;line-height:0;}
+  .quote blockquote{
+    border-left:4px solid var(--red);
+    padding-left:30px;
+    font-size:34px;
+    font-style:italic;
+    font-weight:600;
+    line-height:1.4;
+    margin:20px 0;
+  }
+  .quote .sub{
+    border-left:4px solid var(--red);
+    padding-left:30px;
+    color:#aaa;
+    font-size:16px;
+    margin-top:10px;
+  }
+
+  /* Pillars */
+  .pillars{
+    padding:60px 0 90px;
+    text-align:center;
+  }
+  .pillars-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+    margin-top:10px;
+  }
+  .pillars-grid h3{
+    color:var(--red);
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:1px;
+    margin-bottom:8px;
+  }
+  .pillars-grid p{
+    color:#999;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1.5px;
+  }
+
+  /* Membership */
+  .membership{
+    background:linear-gradient(180deg,#0c0c0c,#0a0a0a);
+    text-align:center;
+  }
+  .membership .eyebrow{
+    color:var(--gold);
+    letter-spacing:4px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+  }
+  .membership h2{
+    font-size:clamp(34px,5vw,56px);
+    font-weight:900;
+    letter-spacing:1px;
+    margin-bottom:60px;
+  }
+  .plans{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:40px;
+    text-align:left;
+    max-width:950px;
+    margin:0 auto;
+  }
+  .plan{
+    background:#121212;
+    border:1px solid #222;
+    padding:40px;
+    position:relative;
+  }
+  .plan.vip{
+    border:1px solid var(--gold);
+    box-shadow:0 0 30px rgba(212,175,55,.15);
+  }
+  .badge{
+    position:absolute;
+    top:25px;right:25px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    padding:6px 12px;
+  }
+  .badge.flex{background:#2a2a2a;color:#ddd;}
+  .badge.value{background:var(--gold);color:#1a1a1a;}
+  .plan h3{font-size:24px;font-weight:800;margin-bottom:18px;letter-spacing:.5px;}
+  .plan .price{
+    font-size:46px;
+    font-weight:900;
+    margin-bottom:30px;
+  }
+  .plan .price span{
+    font-size:16px;
+    font-weight:400;
+    color:#999;
+  }
+  .plan ul{margin-bottom:35px;}
+  .plan ul li{
+    color:#ccc;
+    font-size:15px;
+    padding:10px 0;
+    border-bottom:1px solid #1f1f1f;
+  }
+  .plan ul li:last-child{border-bottom:none;}
+  .plan .btn-outline, .plan .btn-primary{
+    width:100%;
+    text-align:center;
+  }
+
+  /* Footer */
+  footer{
+    background:#050505;
+    padding:80px 0 30px;
+    border-top:1px solid #1a1a1a;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1.3fr 1.3fr;
+    gap:40px;
+    margin-bottom:60px;
+  }
+  .footer-grid h4{
+    font-size:14px;
+    letter-spacing:1.5px;
+    font-weight:800;
+    margin-bottom:24px;
+    text-transform:uppercase;
+  }
+  .footer-about p{color:#999;font-size:14px;line-height:1.7;}
+  .footer-grid ul li{margin-bottom:14px;}
+  .footer-grid ul li a{color:#aaa;font-size:14px;transition:.2s;}
+  .footer-grid ul li a:hover{color:var(--gold);}
+  .footer-grid p{color:#aaa;font-size:14px;margin-bottom:14px;line-height:1.6;}
+  .footer-grid p a{color:var(--gold);}
+  .footer-grid .social a{
+    display:block;
+    color:#ddd;
+    font-size:14px;
+    margin-bottom:10px;
+  }
+  .footer-grid .social a:hover{color:var(--gold);}
+  .footer-bottom{
+    text-align:center;
+    color:#666;
+    font-size:13px;
+    padding-top:30px;
+    border-top:1px solid #1a1a1a;
+  }
+
+  /* Responsive */
+  @media(max-width:900px){
+    .grid3{grid-template-columns:1fr;}
+    .pillars-grid{grid-template-columns:1fr;gap:30px;}
+    .plans{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    nav{display:none;}
+    .menu-toggle{display:block;}
+    header{padding:16px 20px;}
+  }
+  @media(max-width:600px){
+    .footer-grid{grid-template-columns:1fr;}
+    .quote blockquote{font-size:24px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">ELEVATE YOUR POTENTIAL &bull; JOIN THE ELITE CLUB NOW</div>
+
+  <header>
+    <div class="logo">FITNESS <span>M&Delta;NTRA</span></div>
+    <nav id="nav">
+      <ul>
+        <li><a href="#home" class="active">HOME</a></li>
+        <li><a href="#workouts">WORKOUTS</a></li>
+        <li><a href="#nutrition">NUTRITION</a></li>
+        <li><a href="#membership">PREMIUM PASS</a></li>
+      </ul>
+    </nav>
+    <button class="btn-join" onclick="alert('Join Now clicked!')">JOIN NOW</button>
+    <button class="menu-toggle" id="menuToggle">&#9776;</button>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="eyebrow">THE ULTIMATE FITNESS EXPERIENCE</div>
+    <h1>SHAPE YOUR BODY<br>FORGE YOUR<br>LEGACY</h1>
+    <p>An elite sanctuary designed for high-performance training, bespoke nutrition mapping, and radical physical transformation.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="document.getElementById('membership').scrollIntoView({behavior:'smooth'})">EXPLORE MEMBERSHIPS</button>
+      <button class="btn-outline" onclick="alert('Virtual Tour coming soon!')">VIRTUAL TOUR</button>
+    </div>
+  </section>
+
+  <section id="workouts">
+    <div class="container grid3">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=60" alt="Weight Lifting">
+        <div class="label">
+          <h3>WEIGHT LIFTING</h3>
+          <p>BUILD YOUR STRENGTH.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=600&q=60" alt="Yoga & Cardio">
+        <div class="label">
+          <h3>YOGA &amp; CARDIO</h3>
+          <p>FIND YOUR BALANCE.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=60" alt="Healthy Diet">
+        <div class="label">
+          <h3>HEALTHY DIET</h3>
+          <p>FUEL YOUR PROGRESS.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container grid3" style="margin-top:30px;">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600&q=60" alt="Combat Arena">
+        <div class="label">
+          <h3>COMBAT ARENA</h3>
+          <p>UNLEASH YOUR POWER.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=60" alt="Cardio Suite">
+        <div class="label">
+          <h3>CARDIO SUITE</h3>
+          <p>EXCEED YOUR BOUNDARIES.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&q=60" alt="CrossFit Zone">
+        <div class="label">
+          <h3>CROSSFIT ZONE</h3>
+          <p>BREAK YOUR LIMITS.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <div class="container">
+      <div class="quote-mark">&ldquo;</div>
+      <blockquote>The only bad workout is the one that didn't happen.</blockquote>
+      <div class="sub">Push harder than yesterday if you want a different tomorrow.</div>
+    </div>
+  </section>
+
+  <section class="pillars">
+    <div class="container pillars-grid">
+      <div>
+        <h3>CONSISTENCY</h3>
+        <p>OVER INTENSITY</p>
+      </div>
+      <div>
+        <h3>DISCIPLINE</h3>
+        <p>OVER MOTIVATION</p>
+      </div>
+      <div>
+        <h3>PROGRESS</h3>
+        <p>OVER PERFECTION</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="membership" id="membership">
+    <div class="container">
+      <div class="eyebrow">CHOOSE YOUR LEVEL</div>
+      <h2>MEMBERSHIP PASSES</h2>
+      <div class="plans">
+        <div class="plan">
+          <span class="badge flex">MOST FLEXIBLE</span>
+          <h3>MONTHLY ELITE</h3>
+          <div class="price">&#8377;2,499<span>/month</span></div>
+          <ul>
+            <li>&#10003; Access to all gym zones</li>
+            <li>&#10003; 2 Free trainer sessions</li>
+            <li>&#10003; Standard locker access</li>
+          </ul>
+          <button class="btn-outline" onclick="alert('Monthly Elite selected!')">SELECT PLAN</button>
+        </div>
+        <div class="plan vip">
+          <span class="badge value">BEST VALUE</span>
+          <h3>ANNUAL VIP PASS</h3>
+          <div class="price">&#8377;19,999<span>/year</span></div>
+          <ul>
+            <li>&#10003; Unlimited 24/7 gym access</li>
+            <li>&#10003; Personal VIP trainer</li>
+            <li>&#10003; Custom diet &amp; nutrition plans</li>
+            <li>&#10003; Premium spa facilities</li>
+          </ul>
+          <button class="btn-primary" onclick="alert('Welcome to VIP!')">GO VIP</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h4>ABOUT FITNESS M&Delta;NTRA</h4>
+          <p>FITNESS M&Delta;NTRA is an elite sanctuary designed for high-performance training, bespoke nutrition mapping, and radical physical transformation. We combine world-class discipline with premium facilities to help you forge your legacy.</p>
+        </div>
+        <div>
+          <h4>QUICK LINKS</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#workouts">Workouts</a></li>
+            <li><a href="#nutrition">Nutrition</a></li>
+            <li><a href="#membership">Premium Pass</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>CONNECT WITH US</h4>
+          <p><strong>Email:</strong> <a href="mailto:info@fitnessMantra.com">info@fitnessM&Delta;ntra.com</a></p>
+          <p><strong>Call Us:</strong> <a href="tel:+919359783117">+91 93597 83117</a></p>
+          <p><strong>Located At:</strong> Nupur Mukta A2, 7 Hills, Beside Athithi Hotel, Seven Hill, Aurangabad, Maharashtra - 431001</p>
+        </div>
+        <div class="social">
+          <h4>FOLLOW THE ELITE</h4>
+          <p>Get daily high-performance workout tips &amp; nutrition inspiration.</p>
+          <a href="#">&#9633; Instagram</a>
+          <a href="#">&#9711; Facebook</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 FITNESS M&Delta;NTRA. All Rights Reserved. Designed for High Performance.
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('nav');
+  menuToggle.addEventListener('click', () => {
+    if(nav.style.display === 'block'){
+      nav.style.display = 'none';
+    } else {
+      nav.style.display = 'block';
+      nav.style.position = 'absolute';
+      nav.style.top = '70px';
+      nav.style.left = '0';
+      nav.style.right = '0';
+      nav.style.background = '#0a0a0a';
+      nav.style.padding = '20px';
+      nav.querySelector('ul').style.flexDirection = 'column';
+      nav.querySelector('ul').style.gap = '20px';
+      nav.querySelector('ul').style.textAlign = 'center';
+    }
+  });
+
+  // Active nav link on click
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(){
+      document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+      if(window.innerWidth <= 900) nav.style.display = 'none';
+    });
+  });
+
+  // Simple fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {threshold:0.15});
+
+  document.querySelectorAll('.card, .plan').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
